@@ -35,20 +35,22 @@ export default {
         <i class="fa-solid fa-xl fa-ellipsis text-white"></i>
       </button>
 
-      <div
-        v-if="isMenuOpen"
-        class="absolute right-1 top-14 z-10 flex flex-col items-start gap-8 rounded-lg bg-white p-4 shadow-md"
-      >
-        <ProfileMenuButton icon="fa-solid fa-user"
-          >Edit profile</ProfileMenuButton
+      <Transition enter-from-class="opacity-0" leave-to-class="opacity-0">
+        <div
+          v-if="isMenuOpen"
+          class="absolute right-1 top-14 z-10 flex flex-col items-start gap-8 rounded-lg bg-white p-4 shadow-md transition-opacity motion-reduce:transition-none"
         >
-
-        <ProfileMenuButton icon="fa-solid fa-pencil"
-          >Edit cover</ProfileMenuButton
-        >
-
-        <ProfileMenuButton icon="fa-solid fa-copy">Copy link</ProfileMenuButton>
-      </div>
+          <ProfileMenuButton icon="fa-solid fa-user"
+            >Edit profile</ProfileMenuButton
+          >
+          <ProfileMenuButton icon="fa-solid fa-pencil"
+            >Edit cover</ProfileMenuButton
+          >
+          <ProfileMenuButton icon="fa-solid fa-copy"
+            >Copy link</ProfileMenuButton
+          >
+        </div>
+      </Transition>
     </div>
 
     <div class="relative bottom-3">
