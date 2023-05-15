@@ -7,7 +7,7 @@ export default {
 </script>
 
 <template>
-  <button class="text-base">
-    <i :class="icon" class="fa-lg fa-fw text-blue-500 mr-4"></i><slot></slot>
+  <button>
+    <i :class="icon" class="fa-lg fa-fw mr-4 text-blue-500"></i><slot></slot>
   </button>
 </template>

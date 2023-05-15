@@ -1,30 +1,51 @@
 <script>
 import AppCard from '@/Components/AppCard.vue';
 import ProfileMenuButton from '@/Components/ProfileMenuButton.vue';
+import DetailsItem from '@/Components/DetailsItem.vue';
 
 export default {
   components: {
     AppCard,
     ProfileMenuButton,
+    DetailsItem,
   },
   data() {
     return {
       user: {
         name: 'Cool Crow',
+        nickname: 'coolcrow',
         avatarImage: '/images/avatar-demo.png',
         coverImage: '/images/cover-demo.png',
         bio: 'tfw best crow',
         city: 'Saint Petersburg',
+        birthdate: new Date('2000-4-27'),
+        followerCount: 92,
       },
       isMenuOpen: false,
+      isDetailsOpen: false,
     };
+  },
+  computed: {
+    formattedDate() {
+      const month = this.user.birthdate.toLocaleString('default', {
+        month: 'long',
+      });
+      return `${month} ${this.user.birthdate.getDate()}, ${this.user.birthdate.getFullYear()}`;
+    },
+    formattedFollowersCount() {
+      if (this.user.followerCount === 1) {
+        return '1 follower';
+      }
+
+      return `${this.user.followerCount} followers`;
+    },
   },
 };
 </script>
 
 <!-- eslint-disable max-len -->
 <template>
-  <main class="min-h-screen bg-gray-200 text-sm">
+  <main class="min-h-screen bg-gray-200">
     <div class="relative">
       <img :src="user.coverImage" :alt="`${user.name}'s cover image`" />
 
@@ -36,9 +57,10 @@ export default {
       </button>
 
       <Transition enter-from-class="opacity-0" leave-to-class="opacity-0">
-        <div
+        <AppCard
           v-if="isMenuOpen"
-          class="absolute right-1 top-14 z-10 flex flex-col items-start gap-8 rounded-lg bg-white p-4 shadow-md transition-opacity motion-reduce:transition-none"
+          rounded-radius="xl"
+          class="absolute right-1 top-14 z-10 flex flex-col items-start gap-8 shadow-md transition-opacity motion-reduce:transition-none"
         >
           <ProfileMenuButton icon="fa-solid fa-user"
             >Edit profile</ProfileMenuButton
@@ -49,26 +71,71 @@ export default {
           <ProfileMenuButton icon="fa-solid fa-copy"
             >Copy link</ProfileMenuButton
           >
-        </div>
+        </AppCard>
       </Transition>
     </div>
 
     <div class="relative bottom-3">
-      <AppCard class="relative flex flex-col items-center gap-2">
+      <AppCard class="relative flex flex-col items-center">
         <img
           :src="user.avatarImage"
           :alt="`${user.name}'s avatar image'`"
           class="absolute top-0 aspect-square h-24 -translate-y-1/2 rounded-full border-4 border-white"
         />
 
-        <p class="mt-10 text-2xl font-bold">{{ user.name }}</p>
-        <p>{{ user.bio }}</p>
-        <p class="flex gap-4 text-gray-400">
-          <span
-            ><i class="fa-solid fa-location-dot mr-2"></i>{{ user.city }}</span
+        <button
+          @click="isDetailsOpen = true"
+          class="mt-10 flex w-full flex-col items-center gap-2"
+        >
+          <p class="text-2xl font-bold">{{ user.name }}</p>
+          <p>{{ user.bio }}</p>
+          <p class="flex gap-4 text-gray-400">
+            <span
+              ><i class="fa-solid fa-location-dot mr-2"></i
+              >{{ user.city }}</span
+            >
+            <span><i class="fa-solid fa-circle-info mr-2"></i>Learn more</span>
+          </p>
+        </button>
+      </AppCard>
+    </div>
+
+    <div v-if="isDetailsOpen" class="absolute inset-0 bg-black/25">
+      <AppCard
+        rounded-radius="xl"
+        rounded-sides="top"
+        class="absolute inset-0 mt-4"
+      >
+        <div class="text-xl">
+          <button @click="isDetailsOpen = false" class="mr-8">
+            <i class="fa-xl fa-solid fa-xmark text-blue-500"></i></button
+          ><span>Details</span>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-2">
+          <DetailsItem icon="fa-solid fa-align-left">{{
+            user.bio
+          }}</DetailsItem>
+          <DetailsItem icon="fa-solid fa-at"
+            ><a href="#" class="text-blue-500">{{
+              user.nickname
+            }}</a></DetailsItem
           >
-          <span><i class="fa-solid fa-circle-info mr-2"></i>Learn more</span>
-        </p>
+
+          <hr class="my-2" />
+
+          <DetailsItem icon="fa-solid fa-gift" class="text-gray-400"
+            >Birthday: {{ formattedDate }}</DetailsItem
+          >
+          <DetailsItem icon="fa-solid fa-house" class="text-gray-400"
+            >City: {{ user.city }}</DetailsItem
+          >
+          <DetailsItem
+            icon="fa-solid fa-tower-broadcast"
+            class="text-gray-400"
+            >{{ formattedFollowersCount }}</DetailsItem
+          >
+        </div>
       </AppCard>
     </div>
   </main>
