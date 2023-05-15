@@ -1,9 +1,11 @@
 <script>
 import AppCard from '@/Components/AppCard.vue';
+import ProfileMenuButton from '@/Components/ProfileMenuButton.vue';
 
 export default {
   components: {
     AppCard,
+    ProfileMenuButton,
   },
   data() {
     return {
@@ -14,6 +16,7 @@ export default {
         bio: 'tfw best crow',
         city: 'Saint Petersburg',
       },
+      isMenuOpen: false,
     };
   },
 };
@@ -24,11 +27,28 @@ export default {
   <main class="min-h-screen bg-gray-200 text-sm">
     <div class="relative">
       <img :src="user.coverImage" :alt="`${user.name}'s cover image`" />
+
       <button
+        @click="isMenuOpen = !isMenuOpen"
         class="absolute right-1 top-2 aspect-square h-9 rounded-full bg-gray-600/75"
       >
         <i class="fa-solid fa-xl fa-ellipsis text-white"></i>
       </button>
+
+      <div
+        v-if="isMenuOpen"
+        class="absolute right-1 top-14 z-10 flex flex-col items-start gap-8 rounded-lg bg-white p-4 shadow-md"
+      >
+        <ProfileMenuButton icon="fa-solid fa-user"
+          >Edit profile</ProfileMenuButton
+        >
+
+        <ProfileMenuButton icon="fa-solid fa-pencil"
+          >Edit cover</ProfileMenuButton
+        >
+
+        <ProfileMenuButton icon="fa-solid fa-copy">Copy link</ProfileMenuButton>
+      </div>
     </div>
 
     <div class="relative bottom-3">
