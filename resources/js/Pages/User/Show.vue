@@ -55,6 +55,9 @@ export default {
   mounted() {
     document.addEventListener('click', this.closeMenuByClickingOutside);
   },
+  beforeUnmount() {
+    document.removeEventListener('click', this.closeMenuByClickingOutside);
+  },
 };
 </script>
 
