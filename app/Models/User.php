@@ -13,14 +13,36 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Indicates if the model's ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The data type of the ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'name',
+        'nickname',
+        'bio',
+        'avatar_image',
+        'cover_image',
+        'birthdate',
+        'country_id',
+        'state_id',
+        'city_id'
     ];
 
     /**

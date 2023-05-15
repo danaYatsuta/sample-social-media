@@ -12,12 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            // Auth & ID info
+            // 21-long ID field for Nano ID
+            $table->char('id', 21)->primary();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
+            // Profile info
+            $table->string('name');
+            $table->string('nickname')->nullable()->unique();
+            $table->string('bio')->nullable();
+            $table->string('avatar_image')->nullable();
+            $table->string('cover_image')->nullable();
+            $table->date('birthdate')->nullable();
+            $table->integer('country_id')->nullable();
+            $table->integer('state_id')->nullable();
+            $table->integer('city_id')->nullable();
+
             $table->timestamps();
         });
     }
