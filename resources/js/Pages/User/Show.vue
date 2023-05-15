@@ -100,43 +100,48 @@ export default {
       </AppCard>
     </div>
 
-    <div v-if="isDetailsOpen" class="absolute inset-0 bg-black/25">
-      <AppCard
-        rounded-radius="xl"
-        rounded-sides="top"
-        class="absolute inset-0 mt-4"
+    <Transition
+      enter-from-class="bg-opacity-0 [&>*]:translate-y-full"
+      leave-to-class="bg-opacity-0 [&>*]:translate-y-full"
+    >
+      <div
+        v-if="isDetailsOpen"
+        class="absolute inset-0 bg-black bg-opacity-25 transition-colors duration-500 motion-reduce:transition-none"
       >
-        <div class="text-xl">
-          <button @click="isDetailsOpen = false" class="mr-8">
-            <i class="fa-xl fa-solid fa-xmark text-blue-500"></i></button
-          ><span>Details</span>
-        </div>
-
-        <div class="mt-8 flex flex-col gap-2">
-          <DetailsItem icon="fa-solid fa-align-left">{{
-            user.bio
-          }}</DetailsItem>
-          <DetailsItem icon="fa-solid fa-at"
-            ><a href="#" class="text-blue-500">{{
-              user.nickname
-            }}</a></DetailsItem
-          >
-
-          <hr class="my-2" />
-
-          <DetailsItem icon="fa-solid fa-gift" class="text-gray-400"
-            >Birthday: {{ formattedDate }}</DetailsItem
-          >
-          <DetailsItem icon="fa-solid fa-house" class="text-gray-400"
-            >City: {{ user.city }}</DetailsItem
-          >
-          <DetailsItem
-            icon="fa-solid fa-tower-broadcast"
-            class="text-gray-400"
-            >{{ formattedFollowersCount }}</DetailsItem
-          >
-        </div>
-      </AppCard>
-    </div>
+        <AppCard
+          rounded-radius="xl"
+          rounded-sides="top"
+          class="absolute inset-0 mt-4 transition-transform duration-500 motion-reduce:transition-none"
+        >
+          <div class="text-xl">
+            <button @click="isDetailsOpen = false" class="mr-8">
+              <i class="fa-xl fa-solid fa-xmark text-blue-500"></i></button
+            ><span>Details</span>
+          </div>
+          <div class="mt-8 flex flex-col gap-2">
+            <DetailsItem icon="fa-solid fa-align-left">{{
+              user.bio
+            }}</DetailsItem>
+            <DetailsItem icon="fa-solid fa-at"
+              ><a href="#" class="text-blue-500">{{
+                user.nickname
+              }}</a></DetailsItem
+            >
+            <hr class="my-2" />
+            <DetailsItem icon="fa-solid fa-gift" class="text-gray-400"
+              >Birthday: {{ formattedDate }}</DetailsItem
+            >
+            <DetailsItem icon="fa-solid fa-house" class="text-gray-400"
+              >City: {{ user.city }}</DetailsItem
+            >
+            <DetailsItem
+              icon="fa-solid fa-tower-broadcast"
+              class="text-gray-400"
+              >{{ formattedFollowersCount }}</DetailsItem
+            >
+          </div>
+        </AppCard>
+      </div>
+    </Transition>
   </main>
 </template>
