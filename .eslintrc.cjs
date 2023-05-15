@@ -13,6 +13,7 @@ module.exports = {
   plugins: ['vue'],
   rules: {
     'quote-props': ['error', 'consistent'],
+    'operator-linebreak': ['error', 'after'],
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
     'vue/multi-word-component-names': 'off',

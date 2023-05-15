@@ -25,6 +25,18 @@ export default {
       isDetailsOpen: false,
     };
   },
+  methods: {
+    closeMenuByClickingOutside(e) {
+      const { toggleMenuButton, menu } = this.$refs;
+
+      if (
+        this.isMenuOpen &&
+        !(toggleMenuButton.contains(e.target) || menu.$el.contains(e.target))
+      ) {
+        this.isMenuOpen = false;
+      }
+    },
+  },
   computed: {
     formattedDate() {
       const month = this.user.birthdate.toLocaleString('default', {
@@ -40,6 +52,9 @@ export default {
       return `${this.user.followerCount} followers`;
     },
   },
+  mounted() {
+    document.addEventListener('click', this.closeMenuByClickingOutside);
+  },
 };
 </script>
 
@@ -50,6 +65,7 @@ export default {
       <img :src="user.coverImage" :alt="`${user.name}'s cover image`" />
 
       <button
+        ref="toggleMenuButton"
         @click="isMenuOpen = !isMenuOpen"
         class="absolute right-1 top-2 aspect-square h-9 rounded-full bg-gray-600/75"
       >
@@ -58,6 +74,7 @@ export default {
 
       <Transition enter-from-class="opacity-0" leave-to-class="opacity-0">
         <AppCard
+          ref="menu"
           v-if="isMenuOpen"
           rounded-radius="xl"
           class="absolute right-1 top-14 z-10 flex flex-col items-start gap-8 shadow-md transition-opacity motion-reduce:transition-none"
