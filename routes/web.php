@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,4 +17,19 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/sign-up', 'create')->name('users.create');
+        Route::post('/sign-up', 'store')->name('users.store');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/users', 'index')->name('users.index');
+        Route::get('/users/{user}', 'show')->name('users.show');
+        Route::get('/edit', 'edit')->name('users.edit');
+        Route::patch('/edit', 'update')->name('users.update');
+        Route::delete('/delete', 'destroy')->name('users.destroy');
+    });
 });
