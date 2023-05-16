@@ -3,6 +3,8 @@ import AppCard from '@/Components/AppCard.vue';
 import ProfileMenuButton from '@/Components/ProfileMenuButton.vue';
 import DetailsItem from '@/Components/DetailsItem.vue';
 
+const placeholderAvatar = '/images/avatar-placeholder.png';
+
 export default {
   components: {
     AppCard,
@@ -31,6 +33,9 @@ export default {
     },
   },
   computed: {
+    avatarImage() {
+      return this.user.avatarImage || placeholderAvatar;
+    },
     formattedDate() {
       const month = this.user.birthdate.toLocaleString('default', {
         month: 'long',
@@ -91,7 +96,7 @@ export default {
     <div class="relative bottom-3">
       <AppCard class="relative flex flex-col items-center">
         <img
-          :src="user.avatarImage"
+          :src="avatarImage"
           :alt="`${user.name}'s avatar image'`"
           class="absolute top-0 aspect-square h-24 -translate-y-1/2 rounded-full border-4 border-white"
         />
