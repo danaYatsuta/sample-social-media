@@ -63,7 +63,7 @@ export default {
       this.validatePasswordConfirmation();
 
       if (!this.form.hasErrors) {
-        // post to server
+        this.form.post(route('users.store'));
       }
     },
   },

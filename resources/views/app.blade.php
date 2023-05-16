@@ -11,6 +11,7 @@
 
     <script src="https://kit.fontawesome.com/12152fb52c.js" crossorigin="anonymous"></script>
 
+    @routes
     @vite('resources/js/app.js')
     @inertiaHead
 </head>

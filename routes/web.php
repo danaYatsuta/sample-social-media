@@ -25,11 +25,9 @@ Route::controller(UserController::class)->group(function () {
         Route::post('/sign-up', 'store')->name('users.store');
     });
 
-    // TODO move to "auth" after implementing login
-    Route::get('/users/1', 'show')->name('users.show');
-
     Route::middleware('auth')->group(function () {
         Route::get('/users', 'index')->name('users.index');
+        Route::get('/users/{user}', 'show')->name('users.show');
         Route::get('/edit', 'edit')->name('users.edit');
         Route::patch('/edit', 'update')->name('users.update');
         Route::delete('/delete', 'destroy')->name('users.destroy');

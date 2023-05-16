@@ -9,18 +9,11 @@ export default {
     ProfileMenuButton,
     DetailsItem,
   },
+  props: {
+    user: Object,
+  },
   data() {
     return {
-      user: {
-        name: 'Cool Crow',
-        nickname: 'coolcrow',
-        avatarImage: '/images/avatar-demo.png',
-        coverImage: '/images/cover-demo.png',
-        bio: 'tfw best crow',
-        city: 'Saint Petersburg',
-        birthdate: new Date('2000-4-27'),
-        followerCount: 92,
-      },
       isMenuOpen: false,
       isDetailsOpen: false,
     };

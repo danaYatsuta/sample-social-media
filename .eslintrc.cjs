@@ -18,4 +18,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'vue/multi-word-component-names': 'off',
   },
+  globals: {
+    route: 'readonly',
+  },
 };
