@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,4 +33,11 @@ Route::controller(UserController::class)->group(function () {
         Route::patch('/edit', 'update')->name('users.update');
         Route::delete('/delete', 'destroy')->name('users.destroy');
     });
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/menu', function () {
+        return Inertia::render('Menu', ['user' => Auth::user()]);
+    })->name('menu');
 });

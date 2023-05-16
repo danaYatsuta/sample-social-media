@@ -6,7 +6,7 @@ const componentCategories = {
   home: [],
   search: [],
   notifications: [],
-  more: ['User/Show'],
+  more: ['Menu', 'User/Show'],
 };
 
 export default {
