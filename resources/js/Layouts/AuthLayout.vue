@@ -1,9 +1,9 @@
 <script>
-import HeaderNavButton from '@/Components/HeaderNavButton.vue';
+import HeaderNavLink from '@/Components/HeaderNavLink.vue';
 
 export default {
   components: {
-    HeaderNavButton,
+    HeaderNavLink,
   },
 };
 </script>
@@ -12,20 +12,20 @@ export default {
   <div class="flex min-h-screen flex-col bg-gray-200">
     <header class="bg-gray-50">
       <nav class="flex justify-around">
-        <HeaderNavButton value="home" icon="fa-solid fa-house"
-          >Home</HeaderNavButton
+        <HeaderNavLink value="home" icon="fa-solid fa-house"
+          >Home</HeaderNavLink
         >
 
-        <HeaderNavButton value="search" icon="fa-solid fa-magnifying-glass"
-          >Search</HeaderNavButton
+        <HeaderNavLink value="search" icon="fa-solid fa-magnifying-glass"
+          >Search</HeaderNavLink
         >
 
-        <HeaderNavButton value="notifications" icon="fa-solid fa-bell"
-          >Notifications</HeaderNavButton
+        <HeaderNavLink value="notifications" icon="fa-solid fa-bell"
+          >Notifications</HeaderNavLink
         >
 
-        <HeaderNavButton value="more" icon="fa-solid fa-bars"
-          >More</HeaderNavButton
+        <HeaderNavLink value="more" icon="fa-solid fa-bars"
+          >More</HeaderNavLink
         >
       </nav>
     </header>
