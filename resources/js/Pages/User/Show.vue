@@ -1,4 +1,5 @@
 <script>
+import AuthLayout from '@/Layouts/AuthLayout.vue';
 import AppCard from '@/Components/AppCard.vue';
 import ProfileMenuButton from '@/Components/ProfileMenuButton.vue';
 import DetailsItem from '@/Components/DetailsItem.vue';
@@ -7,6 +8,7 @@ const placeholderAvatar = '/images/avatar-placeholder.png';
 
 export default {
   components: {
+    AuthLayout,
     AppCard,
     ProfileMenuButton,
     DetailsItem,
@@ -61,7 +63,7 @@ export default {
 
 <!-- eslint-disable max-len -->
 <template>
-  <main class="min-h-screen bg-gray-200">
+  <AuthLayout>
     <div class="relative aspect-[5/2]">
       <img
         v-if="user.coverImage"
@@ -177,5 +179,5 @@ export default {
         </AppCard>
       </div>
     </Transition>
-  </main>
+  </AuthLayout>
 </template>
