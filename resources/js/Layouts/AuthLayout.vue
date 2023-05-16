@@ -36,9 +36,7 @@ export default {
 <template>
   <div ref="root" class="flex min-h-screen flex-col" :class="bgColorClass">
     <nav ref="navbar" class="flex justify-around bg-gray-50">
-      <NavLink :href="$route('menu')" value="home" icon="fa-solid fa-house"
-        >Home</NavLink
-      >
+      <NavLink value="home" icon="fa-solid fa-house">Home</NavLink>
 
       <NavLink value="search" icon="fa-solid fa-magnifying-glass"
         >Search</NavLink
@@ -48,7 +46,9 @@ export default {
         >Notifications</NavLink
       >
 
-      <NavLink value="more" icon="fa-solid fa-bars">More</NavLink>
+      <NavLink :href="$route('menu')" value="more" icon="fa-solid fa-bars"
+        >More</NavLink
+      >
     </nav>
 
     <main class="flex-1">
