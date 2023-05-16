@@ -63,7 +63,7 @@ export default {
 
 <!-- eslint-disable max-len -->
 <template>
-  <AuthLayout>
+  <AuthLayout :nav-at-the-bottom="true">
     <div class="relative aspect-[5/2]">
       <img
         v-if="user.coverImage"

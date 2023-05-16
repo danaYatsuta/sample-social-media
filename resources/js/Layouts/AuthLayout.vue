@@ -1,5 +1,5 @@
 <script>
-import HeaderNavLink from '@/Components/HeaderNavLink.vue';
+import NavLink from '@/Components/NavLink.vue';
 
 const bgColorClasses = {
   'gray': 'bg-gray-200',
@@ -8,12 +8,16 @@ const bgColorClasses = {
 
 export default {
   components: {
-    HeaderNavLink,
+    NavLink,
   },
   props: {
     bgColor: {
       type: String,
       default: 'gray',
+    },
+    navAtTheBottom: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
@@ -21,31 +25,31 @@ export default {
       return bgColorClasses[this.bgColor];
     },
   },
+  mounted() {
+    if (this.navAtTheBottom) {
+      this.$refs.root.appendChild(this.$refs.navbar);
+    }
+  },
 };
 </script>
 
 <template>
-  <div class="flex min-h-screen flex-col" :class="bgColorClass">
-    <header class="bg-gray-50">
-      <nav class="flex justify-around">
-        <HeaderNavLink
-          :href="$route('menu')"
-          value="home"
-          icon="fa-solid fa-house"
-          >Home</HeaderNavLink
-        >
+  <div ref="root" class="flex min-h-screen flex-col" :class="bgColorClass">
+    <nav ref="navbar" class="flex justify-around bg-gray-50">
+      <NavLink :href="$route('menu')" value="home" icon="fa-solid fa-house"
+        >Home</NavLink
+      >
 
-        <HeaderNavLink value="search" icon="fa-solid fa-magnifying-glass"
-          >Search</HeaderNavLink
-        >
+      <NavLink value="search" icon="fa-solid fa-magnifying-glass"
+        >Search</NavLink
+      >
 
-        <HeaderNavLink value="notifications" icon="fa-solid fa-bell"
-          >Notifications</HeaderNavLink
-        >
+      <NavLink value="notifications" icon="fa-solid fa-bell"
+        >Notifications</NavLink
+      >
 
-        <HeaderNavLink value="more" icon="fa-solid fa-bars">More</HeaderNavLink>
-      </nav>
-    </header>
+      <NavLink value="more" icon="fa-solid fa-bars">More</NavLink>
+    </nav>
 
     <main class="flex-1">
       <slot></slot>

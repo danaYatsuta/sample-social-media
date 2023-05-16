@@ -9,6 +9,5 @@ export default {
 </script>
 
 <template>
-  <AuthLayout bg-color="light-gray">
-  </AuthLayout>
+  <AuthLayout bg-color="light-gray" :nav-at-the-bottom="true"> </AuthLayout>
 </template>
