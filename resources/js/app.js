@@ -2,7 +2,7 @@ import './bootstrap';
 import '../css/app.css';
 
 import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/vue3';
+import { createInertiaApp, Link } from '@inertiajs/vue3';
 
 createInertiaApp({
   resolve: (name) => {
@@ -14,6 +14,7 @@ createInertiaApp({
   }) {
     const app = createApp({ render: () => h(App, props) });
     app.use(plugin);
+    app.component('InertiaLink', Link);
     app.config.globalProperties.$route = route;
     app.mount(el);
   },
