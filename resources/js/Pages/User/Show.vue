@@ -62,8 +62,12 @@ export default {
 <!-- eslint-disable max-len -->
 <template>
   <main class="min-h-screen bg-gray-200">
-    <div class="relative">
-      <img :src="user.coverImage" :alt="`${user.name}'s cover image`" />
+    <div class="relative aspect-[5/2]">
+      <img
+        v-if="user.coverImage"
+        :src="user.coverImage"
+        :alt="`${user.name}'s cover image`"
+      />
 
       <button
         ref="toggleMenuButton"
@@ -106,9 +110,9 @@ export default {
           class="mt-10 flex w-full flex-col items-center gap-2"
         >
           <p class="text-2xl font-bold">{{ user.name }}</p>
-          <p>{{ user.bio }}</p>
+          <p v-if="user.bio">{{ user.bio }}</p>
           <p class="flex gap-4 text-gray-400">
-            <span
+            <span v-if="user.city"
               ><i class="fa-solid fa-location-dot mr-2"></i
               >{{ user.city }}</span
             >
@@ -136,22 +140,34 @@ export default {
               <i class="fa-xl fa-solid fa-xmark text-blue-500"></i></button
             ><span>Details</span>
           </div>
+
           <div class="mt-8 flex flex-col gap-2">
-            <DetailsItem icon="fa-solid fa-align-left">{{
+            <DetailsItem v-if="user.bio" icon="fa-solid fa-align-left">{{
               user.bio
             }}</DetailsItem>
-            <DetailsItem icon="fa-solid fa-at"
+
+            <DetailsItem v-if="user.nickname" icon="fa-solid fa-at"
               ><a href="#" class="text-blue-500">{{
                 user.nickname
               }}</a></DetailsItem
             >
-            <hr class="my-2" />
-            <DetailsItem icon="fa-solid fa-gift" class="text-gray-400"
+
+            <hr class="my-2 first:hidden" />
+
+            <DetailsItem
+              v-if="user.birthdate"
+              icon="fa-solid fa-gift"
+              class="text-gray-400"
               >Birthday: {{ formattedDate }}</DetailsItem
             >
-            <DetailsItem icon="fa-solid fa-house" class="text-gray-400"
+
+            <DetailsItem
+              v-if="user.city"
+              icon="fa-solid fa-house"
+              class="text-gray-400"
               >City: {{ user.city }}</DetailsItem
             >
+
             <DetailsItem
               icon="fa-solid fa-tower-broadcast"
               class="text-gray-400"
