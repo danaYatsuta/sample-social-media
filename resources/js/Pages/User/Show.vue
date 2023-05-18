@@ -125,8 +125,8 @@ export default {
     </div>
 
     <Transition
-      enter-from-class="bg-opacity-0 [&>*]:translate-y-full"
-      leave-to-class="bg-opacity-0 [&>*]:translate-y-full"
+      enter-from-class="!bg-opacity-0 [&>*]:translate-y-full"
+      leave-to-class="!bg-opacity-0 [&>*]:translate-y-full"
     >
       <div
         v-if="isDetailsOpen"
