@@ -4,8 +4,6 @@ import AppCard from '@/Components/AppCard.vue';
 import ProfileMenuButton from '@/Components/ProfileMenuButton.vue';
 import DetailsItem from '@/Components/DetailsItem.vue';
 
-const placeholderAvatar = '/images/avatar-placeholder.png';
-
 export default {
   components: {
     AuthLayout,
@@ -36,7 +34,7 @@ export default {
   },
   computed: {
     avatarImage() {
-      return this.user.avatarImage || placeholderAvatar;
+      return this.user.avatarImage || this.$placeholderAvatar;
     },
     formattedDate() {
       const month = this.user.birthdate.toLocaleString('default', {

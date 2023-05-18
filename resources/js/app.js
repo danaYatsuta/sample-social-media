@@ -16,6 +16,8 @@ createInertiaApp({
     app.use(plugin);
     app.component('InertiaLink', Link);
     app.config.globalProperties.$route = route;
+    app.config.globalProperties.$placeholderAvatar =
+      '/images/avatar-placeholder.png';
     app.mount(el);
   },
 });
