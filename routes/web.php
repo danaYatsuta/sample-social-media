@@ -37,6 +37,11 @@ Route::controller(UserController::class)->group(function () {
 });
 
 Route::controller(SessionController::class)->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/log-in', 'create')->name('sessions.create');
+        Route::post('log-in', 'store')->name('sessions.store');
+    });
+
     Route::middleware('auth')->group(function () {
         Route::delete('/log-out', 'destroy')->name('sessions.destroy');
     });
