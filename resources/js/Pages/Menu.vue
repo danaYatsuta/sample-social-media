@@ -25,24 +25,33 @@ export default {
       <i class="fa-solid fa-gear text-blue-500"></i>
     </div>
 
-    <InertiaLink
-      :href="$route('users.show', { user })"
-      class="m-4 flex items-center justify-between rounded-md bg-gray-200 p-4"
-    >
-      <div class="flex gap-2">
-        <img
-          :src="avatarImage"
-          alt="Your avatar image"
-          class="aspect-square h-10 rounded-full"
-        />
-
-        <div class="flex flex-col justify-between">
-          <p>{{ user.name }}</p>
-          <p class="text-sm text-gray-400">Open profile</p>
+    <div class="m-4 flex flex-col gap-4">
+      <InertiaLink
+        :href="$route('users.show', { user })"
+        class="flex items-center justify-between rounded-md bg-gray-200 p-4"
+      >
+        <div class="flex gap-2">
+          <img
+            :src="avatarImage"
+            alt="Your avatar image"
+            class="aspect-square h-10 rounded-full"
+          />
+          <div class="flex flex-col justify-between">
+            <p>{{ user.name }}</p>
+            <p class="text-sm text-gray-400">Open profile</p>
+          </div>
         </div>
-      </div>
+        <i class="fa-solid fa-chevron-right text-gray-400"></i>
+      </InertiaLink>
 
-      <i class="fa-solid fa-chevron-right text-gray-400"></i>
-    </InertiaLink>
+      <InertiaLink
+        :href="$route('sessions.destroy')"
+        method="delete"
+        as="button"
+        class="flex items-center gap-2"
+      >
+        <i class="fa-solid fa-power-off text-blue-500"></i><span>Log out</span>
+      </InertiaLink>
+    </div>
   </AuthLayout>
 </template>

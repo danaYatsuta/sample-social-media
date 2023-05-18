@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,11 @@ Route::controller(UserController::class)->group(function () {
     });
 });
 
+Route::controller(SessionController::class)->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::delete('/log-out', 'destroy')->name('sessions.destroy');
+    });
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/menu', function () {
