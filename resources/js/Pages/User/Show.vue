@@ -13,6 +13,7 @@ export default {
   },
   props: {
     user: Object,
+    isCurrentUser: Boolean,
   },
   data() {
     return {
@@ -84,12 +85,15 @@ export default {
           rounded-radius="xl"
           class="absolute right-1 top-14 z-10 flex flex-col items-start gap-8 shadow-md transition-opacity motion-reduce:transition-none"
         >
-          <ProfileMenuButton icon="fa-solid fa-user"
-            >Edit profile</ProfileMenuButton
-          >
-          <ProfileMenuButton icon="fa-solid fa-pencil"
-            >Edit cover</ProfileMenuButton
-          >
+          <template v-if="isCurrentUser">
+            <ProfileMenuButton icon="fa-solid fa-user"
+              >Edit profile</ProfileMenuButton
+            >
+            <ProfileMenuButton icon="fa-solid fa-pencil"
+              >Edit cover</ProfileMenuButton
+            >
+          </template>
+
           <ProfileMenuButton icon="fa-solid fa-copy"
             >Copy link</ProfileMenuButton
           >
