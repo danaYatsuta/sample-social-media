@@ -35,7 +35,7 @@ export default {
 
 <template>
   <div ref="root" class="flex min-h-screen flex-col" :class="bgColorClass">
-    <nav ref="navbar" class="flex justify-around bg-gray-50">
+    <nav ref="navbar" class="flex bg-gray-50">
       <NavLink value="home" icon="fa-solid fa-house">Home</NavLink>
 
       <NavLink value="search" icon="fa-solid fa-magnifying-glass"
