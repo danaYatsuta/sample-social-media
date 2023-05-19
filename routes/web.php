@@ -38,7 +38,7 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(SessionController::class)->group(function () {
     Route::middleware('guest')->group(function () {
-        Route::get('/log-in', 'create')->name('sessions.create');
+        Route::get('/log-in', 'create')->name('login');
         Route::post('log-in', 'store')->name('sessions.store');
     });
 
