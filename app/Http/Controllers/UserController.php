@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -46,5 +47,26 @@ class UserController extends Controller
             'user' => $user,
             'isCurrentUser' => Auth::user() == $user
         ]);
+    }
+
+    public function edit()
+    {
+        return Inertia::render('User/Edit', ['user' => Auth::user()]);
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+            'nickname' => ['nullable', 'min:5', 'max:32',  Rule::unique('users')->ignore($user->id), 'unique:users,id'],
+            'bio' => ['nullable', 'max:140']
+        ]);
+
+        $user->update($validated);
+
+        return to_route('users.show', ['user' => $user]);
     }
 }

@@ -86,7 +86,9 @@ export default {
           class="absolute right-1 top-14 z-10 flex flex-col items-start gap-8 shadow-md transition-opacity motion-reduce:transition-none"
         >
           <template v-if="isCurrentUser">
-            <ProfileMenuButton icon="fa-solid fa-user"
+            <ProfileMenuButton
+              :href="$route('users.edit')"
+              icon="fa-solid fa-user"
               >Edit profile</ProfileMenuButton
             >
             <ProfileMenuButton icon="fa-solid fa-pencil"
